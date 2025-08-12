@@ -1,9 +1,5 @@
-@if (Auth::user()->role === 'owner')
-    @extends('layouts.app')
-@else
-    @extends('layouts.staff-app')
-@endif
-
+{{-- Pilih layout sesuai role --}}
+@extends(Auth::user()->role === 'owner' ? 'layouts.app' : 'layouts.staff-app')
 
 @section('header')
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -20,14 +16,16 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Pilih Produk</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        @foreach ($products as $product)
+                        @forelse ($products as $product)
                             <div @click="addToCart({{ json_encode($product) }})"
                                  class="border rounded-lg p-4 text-center cursor-pointer hover:bg-gray-100 hover:shadow-md transition">
                                 <p class="font-semibold text-gray-800">{{ $product->name }}</p>
                                 <p class="text-sm text-gray-600">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                                 <p class="text-xs text-gray-500">Stok: {{ $product->stock }}</p>
                             </div>
-                        @endforeach
+                        @empty
+                            <p class="text-gray-500 col-span-full">Tidak ada produk tersedia.</p>
+                        @endforelse
                     </div>
                 </div>
             </div>
