@@ -100,8 +100,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        // Keamanan: Pastikan owner hanya bisa menghapus staff di perusahaannya
-        // dan tidak bisa menghapus dirinya sendiri.
+        
         if ($user->company_id !== auth()->user()->company_id || $user->isOwner()) {
             abort(403, 'AKSES DITOLAK');
         }

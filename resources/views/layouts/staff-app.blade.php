@@ -21,8 +21,6 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            {{-- PERBAIKAN: Menggunakan @include untuk memanggil file navigasi --}}
-            {{-- Pastikan nama file Anda adalah 'staff-navigation.blade.php' --}}
             @include('staff-navigation')
 
             <!-- Page Heading -->
@@ -36,8 +34,7 @@
 
             <!-- Page Content -->
             <main>
-                {{-- PERBAIKAN: Menggunakan @yield agar kompatibel dengan @extends --}}
-                @yield('content')
+                @yield('header')
             </main>
         </div>
 

@@ -38,23 +38,23 @@ class ProductController extends Controller
         ]);
 
         $product = new Product($request->all());
-        $product->company_id = auth()->user()->company_id; // Otomatis set company_id
+        $product->company_id = auth()->user()->company_id;
         $product->save();
 
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
-
-    // Metode lain seperti show, edit, update, destroy akan mengikuti pola yang sama,
-    // selalu memastikan untuk mengambil produk yang sesuai dengan company_id.
-    // Contoh untuk edit:
     public function edit(Product $product)
     {
-        // Pastikan produk ini milik perusahaan yang benar
+
         if ($product->company_id !== auth()->user()->company_id) {
             abort(403, 'AKSES DITOLAK');
         }
         return view('products.edit', compact('product'));
     }
 
-    // Anda bisa melengkapi sisanya (update, destroy) dengan logika yang sama.
+   public function destroy(Product $product)
+   {
+    $product -> delete();
+     return redirect()->route('products.index')->with('success', 'Product berhasil dihapus.');
+   }
 }
