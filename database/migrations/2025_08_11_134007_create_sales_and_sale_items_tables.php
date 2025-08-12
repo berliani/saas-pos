@@ -11,6 +11,9 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->unsignedInteger('company_id');
             $table->unsignedInteger('user_id');
+
+            $table->string('invoice_no')->unique();
+            
             $table->decimal('total', 10, 2);
             $table->timestamps();
 
