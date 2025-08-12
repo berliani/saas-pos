@@ -4,12 +4,12 @@
     @extends('layouts.staff-app')
 @endif
 
+
 @section('header')
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('Point of Sale (POS)') }}
     </h2>
 @endsection
-
 
 @section('content')
     <div class="py-12" x-data="pos()">

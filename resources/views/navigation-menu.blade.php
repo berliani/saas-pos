@@ -28,7 +28,7 @@
                     </x-nav-link>
 
                      <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                        {{ __('Manajemen Staff') }}
+                        {{ __('Manajemen User') }}
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('pos.index') }}" :active="request()->routeIs('pos.*')">

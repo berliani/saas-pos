@@ -12,7 +12,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(entrypoints: ['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
@@ -34,7 +34,7 @@
 
             <!-- Page Content -->
             <main>
-                @yield('header')
+                @yield('content')
             </main>
         </div>
 

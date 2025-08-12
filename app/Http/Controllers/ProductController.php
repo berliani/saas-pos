@@ -51,7 +51,26 @@ class ProductController extends Controller
         }
         return view('products.edit', compact('product'));
     }
+ public function update(Request $request, Product $product)
+    {
 
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'price' => ['required', 'string'],
+            'stock' =>['required', 'integer']
+        ]);
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'stock' => $request-> stock
+        ]);
+
+
+
+        return redirect()->route('products.index')->with('success', 'Data product berhasil diperbarui.');
+    }
    public function destroy(Product $product)
    {
     $product -> delete();
